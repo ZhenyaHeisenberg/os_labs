@@ -1,0 +1,23 @@
+CC      = gcc
+CFLAGS  = -Wall -Wextra -g
+
+PARENT  = parent
+CHILD   = child
+
+all: $(PARENT) $(CHILD)
+
+$(PARENT): parent.c
+	$(CC) $(CFLAGS) parent.c -o $(PARENT)
+
+$(CHILD): child.c
+	$(CC) $(CFLAGS) child.c -o $(CHILD)
+
+run: all
+	./$(PARENT)
+
+clean:
+	rm -f $(PARENT) $(CHILD)
+
+rebuild: clean all
+
+.PHONY: all run clean rebuild
