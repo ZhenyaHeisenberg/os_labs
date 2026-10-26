@@ -180,14 +180,3 @@ int main(void) {
     run_benchmark(&base, t_min, t_max);
     return 0;
 }
-
-// cd /c/Users/admin/Desktop/os_labs/os_labs/lab_3
-
-// # удалить старый кэш (он от другого пути)
-// rm -rf build
-
-// # сконфигурировать заново
-// cmake -S . -B build -G "MinGW Makefiles"
-
-// # собрать
-// cmake --build build
