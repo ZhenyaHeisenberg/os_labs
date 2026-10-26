@@ -154,9 +154,18 @@ void run_benchmark(const ProcessArgs* base, int t_min, int t_max) {
 
 int main(void) {
     const char* file   = "data.txt";
-    int         t_min  = 1;
-    int         t_max  = 20;
-    long        mem_mb = 0;
+    int         t_min;
+    int         t_max;
+    long        mem_mb;
+
+    printf("min threads: ");
+    scanf("%d", &t_min);
+
+    printf("\nmax threads: ");
+    scanf("%d", &t_max);
+
+    printf("\nmemory (mb): ");
+    scanf("%ld", &mem_mb);
 
     ProcessArgs base = { file, t_min, mem_mb };
 
