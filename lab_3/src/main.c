@@ -138,7 +138,7 @@ double now(void) {
 }
 
 void run_benchmark(const ProcessArgs* base, int t_min, int t_max) {
-    printf("\n%-6s %-12s %-12s\n\n", "T", "time(s)", "speedup");
+    printf("\n%-6s %-12s %-12s %-12s\n\n", "T", "time(s)", "speedup", "efficiency");
     double t1 = 0;
     for (int T = t_min; T <= t_max; T += 1) {
         ProcessArgs a = *base; a.max_threads = T; a.memory_limit_mb = 0;
@@ -148,7 +148,8 @@ void run_benchmark(const ProcessArgs* base, int t_min, int t_max) {
         if (rc) { printf("T=%d failed\n", T); continue; }
         if (T == t_min) t1 = dt;
         double s = dt > 0 ? t1 / dt : 0;
-        printf("%-6d %-12.6f %-12.4f\n\n", T, dt, s);
+        double e = s / T;
+        printf("%-6d %-12.6f %-12.4f %-12.4f\n\n", T, dt, s, e);
     }
 }
 
@@ -179,3 +180,14 @@ int main(void) {
     run_benchmark(&base, t_min, t_max);
     return 0;
 }
+
+// cd /c/Users/admin/Desktop/os_labs/os_labs/lab_3
+
+// # удалить старый кэш (он от другого пути)
+// rm -rf build
+
+// # сконфигурировать заново
+// cmake -S . -B build -G "MinGW Makefiles"
+
+// # собрать
+// cmake --build build
