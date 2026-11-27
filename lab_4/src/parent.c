@@ -67,7 +67,7 @@ int main(void) {
     }
 
     if (pid == 0) {
-        /* Ребёнок */
+        // Ребёнок
         close(fd);
         fclose(input);
         execl("./child", "child", NULL);
@@ -75,7 +75,7 @@ int main(void) {
         exit(1);
     }
 
-    /* Родитель */
+    // Родитель
     char line[4096];
     int exit_code = 0;
 
@@ -88,7 +88,7 @@ int main(void) {
             continue;
         }
 
-        // Ждём, пока ребёнок освободит буфер
+        // Ждём, пока ребёнок закончит
         while (shm->ready || shm->done) {
             usleep(1000);
         }
